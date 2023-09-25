@@ -5,7 +5,7 @@ class Solution {
         int arr [] = new int [101];
         for (int i = 0; i < nums.length; i++) {
         int num = nums[i];
-        arr[num]++;
+        ++arr[num];
     }
         
         for (int i = 0; i < arr.length; i++) 
