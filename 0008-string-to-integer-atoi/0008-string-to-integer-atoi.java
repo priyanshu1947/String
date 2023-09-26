@@ -1,42 +1,31 @@
 class Solution {
     public int myAtoi(String s) {
-        int i = 0;
-        Boolean isPos = true;
+        int n = s.length();
+        int i=0;
+        int result=0;
+        int sign =1;
 
-        while(i < s.length() && s.charAt(i) == ' ')
-            i++;
-
-        if(i == s.length())
-            return 0;
-
-        if(s.charAt(i) == '-'){
-            isPos = false;
+        while(i<n&&s.charAt(i)==' ')
+        i++;
+        if(i<n&&s.charAt(i)=='+')
+        {
+            sign = 1;
             i++;
         }
-        else if(s.charAt(i) == '+')
+        else if (i<n&&s.charAt(i)=='-')
+        {
+            sign=-1;
             i++;
-
-        long ans = 0;
-
-        for(; i < s.length(); i++){
-            if(s.charAt(i) < '0' || s.charAt(i) > '9')
-                break;
-
-            ans = ans*10 + s.charAt(i)-'0';
-
-            if(isPos && ans > (Math.pow(2, 31)-1)){
-                ans = (long)(Math.pow(2, 31)-1);
-                break;
-            }
-            else if(!isPos && ans > Math.pow(2, 31)){
-                ans = (long)Math.pow(2, 31);
-                break;
-            }
         }
-
-        if(!isPos)
-            return (int)(-1*ans);
-
-        return (int)ans;
+         while (i < n && Character.isDigit(s.charAt(i))) {
+            int digit = s.charAt(i) - '0';
+        if (result > Integer.MAX_VALUE / 10 || (result == Integer.MAX_VALUE/10 && digit > 7))
+        {
+            return sign==1?Integer.MAX_VALUE:Integer.MIN_VALUE;
+        }
+            result = result*10+digit;
+            i++;
+        }
+        return result*sign;
     }
 }
