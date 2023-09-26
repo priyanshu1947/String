@@ -3,21 +3,21 @@ import java.util.Map;
 
 class Solution {
     public int mostFrequentEven(int[] nums) {
-        Map<Integer, Integer> frequencyMap = new HashMap<>();
-        int mostFrequentEven = -1;
+        Map<Integer, Integer> map = new HashMap<>();
         int maxFrequency = 0;
+        int smallestEven = Integer.MAX_VALUE;
 
-        for (int num : nums) {
-            if (num % 2 == 0) {
-                frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
-                int currentFrequency = frequencyMap.get(num);
-                if (currentFrequency > maxFrequency || (currentFrequency == maxFrequency && num < mostFrequentEven)) {
-                    mostFrequentEven = num;
+        for (int x : nums) {
+            if (x % 2 == 0) {
+                map.put(x, map.getOrDefault(x, 0) + 1);
+                int currentFrequency = map.get(x);
+                if (currentFrequency > maxFrequency || (currentFrequency == maxFrequency && x < smallestEven)) {
                     maxFrequency = currentFrequency;
+                    smallestEven = x;
                 }
             }
         }
 
-        return mostFrequentEven;
+        return maxFrequency == 0 ? -1 : smallestEven;
     }
 }
