@@ -6,14 +6,14 @@ class Solution {
         int n = words.length, count = 0;
         for (int i =0; i<n-1;i++)
         {
-             Set<Character> set1 = new HashSet<Character>();
+             HashSet<Character> set1 = new HashSet<Character>();
             for(char c: words[i].toCharArray())
             {
                 set1.add(c);
             }
             for(int j =i+1;j<n;j++)
             {
-                Set<Character> set2 = new HashSet<Character>();
+                HashSet<Character> set2 = new HashSet<Character>();
                 for(char c : words[j].toCharArray())
                 {
                     set2.add(c);
